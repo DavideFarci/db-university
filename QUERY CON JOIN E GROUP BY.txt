@@ -12,9 +12,7 @@ QUERY CON JOIN
 
 6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54) --> SELECT DISTINCT `teachers`.`name` AS `name_of_teacher`, `teachers`.`surname`, `departments`.`name` AS `name_of_department` FROM `departments` JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id` JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id` JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id` JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id` WHERE `departments`.`name` = 'Dipartimento di Matematica' ORDER BY `teachers`.`name` ASC, `teachers`.`surname` ASC; (70)
 
-7a. BONUS: Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo --> SELECT `students`.`name` AS `name_of_student`, `students`.`surname`, COUNT(`exams`.`id`) AS `number_of_chance`, MAX(`exam_student`.`vote`) AS `bigger_vote` FROM `students` JOIN `exam_student` ON `students`.`id` = `exam_student`.`student_id` JOIN `exams` ON `exam_student`.`exam_id` = `exams`.`id` GROUP BY `students`.`id`;
-
-7b. Successivamente, filtrare i tentativi con voto minimo 18 --> SELECT `students`.`name` AS `name_of_student`, `students`.`surname`, COUNT(`exams`.`id`) AS `number_of_chance`, MAX(`exam_student`.`vote`) AS `bigger_vote` FROM `students` JOIN `exam_student` ON `students`.`id` = `exam_student`.`student_id` JOIN `exams` ON `exam_student`.`exam_id` = `exams`.`id` WHERE `exam_student`.`vote` >= 18 GROUP BY `students`.`id`;
+7a. BONUS: Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo, successivamente, filtrare i tentativi con voto minimo 18 --> SELECT `students`.`name` AS `name_of_student`, `students`.`surname`, COUNT(`exams`.`id`) AS `number_of_chance`, MAX(`exam_student`.`vote`) AS `bigger_vote` FROM `students` JOIN `exam_student` ON `students`.`id` = `exam_student`.`student_id` JOIN `exams` ON `exam_student`.`exam_id` = `exams`.`id` WHERE `exam_student`.`vote` >= 18 GROUP BY `students`.`id`;
 
 
 QUERY CON GROUP BY
